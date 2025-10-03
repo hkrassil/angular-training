@@ -8,5 +8,9 @@
 <br>
 
 @if(postToEdit()) {
-    postToEdit: {{ postToEdit() | json }}
+    <app-post-dialog
+        [post]="postToEdit()!"
+        (onCancel)="cancel()"
+        (onUpdate)="update($event)"
+    ></app-post-dialog>
 }

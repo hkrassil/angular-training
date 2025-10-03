@@ -1,0 +1,28 @@
+<div class="overlay">
+
+    <div class="dialog-container">
+        <div class="dialog-header">
+            Edit post
+        </div>
+        <div class="dialog-body">
+            <div [formGroup]="form">
+                <div class="form-row">
+                    <label for="title">Title</label>
+                    <input id="title" formControlName="title">
+
+                    @if(title.invalid && title.touched) {
+                        <small class="error-msg">Required</small>
+                    }
+                </div>
+                <div class="form-row">
+                    <label for="views">Views</label>
+                    <input id="views" formControlName="views" type="number">
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button (click)="cancel()">Cancel</button>
+            <button (click)="save()">Save</button>
+        </div>
+    </div>
+</div>
