@@ -29,6 +29,12 @@
     },
     {
       "path": "./projects/hello-angular/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zoneless-app-v2/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/zoneless-app-v2/tsconfig.spec.json"
     }
   ]
 }
