@@ -1,5 +1,12 @@
 <h1>Posts</h1>
 
 @for(post of posts(); track post.id) {
-    <app-post-item [post]="post"></app-post-item>
+    <app-post-item [post]="post" (onEdit)="openDialog($event)"></app-post-item>
+}
+
+<br>
+<br>
+
+@if(postToEdit()) {
+    postToEdit: {{ postToEdit() | json }}
 }

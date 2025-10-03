@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { Post } from "../../models/post.model";
 import { CommonModule } from "@angular/common";
 
@@ -8,5 +8,10 @@ import { CommonModule } from "@angular/common";
     imports: [CommonModule]
 })
 export class PostItemComponent {
-    post = input<Post>();
+    post = input.required<Post>();
+    onEdit = output<Post>();
+    
+    edit() {
+        this.onEdit.emit(this.post());
+    }
 }

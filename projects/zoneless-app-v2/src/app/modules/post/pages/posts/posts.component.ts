@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from "@angular/core";
+import { Component, inject, Signal, signal, WritableSignal } from "@angular/core";
 import { PostService } from "../../services/post.service";
 import { CommonModule } from "@angular/common";
 import { Post } from "../../models/post.model";
@@ -14,9 +14,15 @@ export class PostsComponent {
 
     posts: WritableSignal<Post[]> = signal([]);
 
+    postToEdit: WritableSignal<Post | null> = signal(null);
+
     constructor() {
         this.postService.list().subscribe((posts) => {
             this.posts.set(posts);
         });
+    }
+
+    openDialog(post: Post) {
+        this.postToEdit.set(post);
     }
 }
