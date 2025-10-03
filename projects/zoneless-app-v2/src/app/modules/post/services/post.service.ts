@@ -1,14 +1,23 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Post, PostForCreate } from "../models/post.model";
 
 @Injectable({ providedIn: "root" })
 export class PostService {
     private http = inject(HttpClient);
 
-    list(): Observable<Post[]> {
-        return this.http.get<Post[]>("http://localhost:3000/posts");
+    list(quickSearch: string): Observable<Post[]> {
+        const qs = quickSearch?.toLocaleLowerCase().trim();
+
+        return this.http.get<Post[]>("http://localhost:3000/posts").pipe(
+            // Simulation of server-side filter
+            map(posts => posts.filter(post => {
+                if (qs.length === 0) return true;
+
+                return post.title.toLocaleLowerCase().indexOf(qs) >= 0
+            }))
+        );
     }
 
     create(post: PostForCreate): Observable<Post> {
