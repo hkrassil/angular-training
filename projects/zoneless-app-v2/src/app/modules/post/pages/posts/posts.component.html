@@ -1,5 +1,5 @@
 <h1>Posts</h1>
 
-<pre>
-{{ posts() | json }}
-</pre>
+@for(post of posts(); track post.id) {
+    <app-post-item [post]="post"></app-post-item>
+}
